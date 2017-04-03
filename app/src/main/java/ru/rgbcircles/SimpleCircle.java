@@ -4,6 +4,7 @@ class SimpleCircle {
     int x;
     int y;
     private int radius;
+    private int color;
 
     SimpleCircle(int x, int y, int radius) {
         this.x = x;
@@ -22,4 +23,13 @@ class SimpleCircle {
     int getRadius() {
         return radius;
     }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
 }
+
