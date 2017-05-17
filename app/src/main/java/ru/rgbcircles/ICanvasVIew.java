@@ -6,4 +6,8 @@ package ru.rgbcircles;
 
 public interface ICanvasVIew {
     void drawCircle(SimpleCircle circle);
+    void redraw();
+
+    void showMessage(String text);
 }
+

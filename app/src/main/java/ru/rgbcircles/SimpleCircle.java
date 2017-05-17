@@ -5,8 +5,6 @@ class SimpleCircle {
     int y;
     protected int radius;
     private int color;
-    private int dx;
-    private int dy;
 
     SimpleCircle(int x, int y, int radius) {
         this.x = x;
@@ -40,12 +38,6 @@ class SimpleCircle {
 
     public boolean isIntersect(SimpleCircle circle) {
         return radius + circle.radius >= Math.sqrt(Math.pow(x - circle.x, 2) + Math.pow(y - circle.y, 2));
-    }
-
-    public void moveOneStep() {
-        x += dx;
-        y += dy;
-
     }
 }
 

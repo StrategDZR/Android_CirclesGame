@@ -19,4 +19,12 @@ class MainCircle extends SimpleCircle {
         x += dx;
         y += dy;
     }
+
+    void initRadius() {
+        radius = INIT_RADIUS;
+    }
+
+    void growRadius(SimpleCircle circle) {
+        radius = (int) Math.sqrt(Math.pow(radius, 2) + Math.pow(circle.radius, 2));
+    }
 }

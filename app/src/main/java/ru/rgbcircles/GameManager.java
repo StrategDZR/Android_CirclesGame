@@ -35,7 +35,7 @@ class GameManager {
     }
 
     private void calculateAndSetCirclesColor() {
-        for (EnemyCircle circle: circles) {
+        for (EnemyCircle circle : circles) {
             circle.setEnemyOrFoadColor(mainCircle);
         }
     }
@@ -61,11 +61,42 @@ class GameManager {
 
     void onTouchEvent(int x, int y) {
         mainCircle.moveMainCircleWhenTouchAt(x, y);
+        checkCollision();
         moveCircles();
     }
 
+    private void checkCollision() {
+        SimpleCircle circleForDelete = null;
+        for (EnemyCircle circle : circles) {
+            if (mainCircle.isIntersect(circle)) {
+                if (circle.isSmallerThan(mainCircle)) {
+                    mainCircle.growRadius(circle);
+                    circleForDelete = circle;
+                    calculateAndSetCirclesColor();
+                    break;
+                } else {
+                    gameEnd("You lose!");
+                    return;
+                }
+            }
+        }
+        if (circleForDelete != null) {
+            circles.remove(circleForDelete);
+        }
+        if (circles.isEmpty()) {
+            gameEnd("Win!");
+        }
+    }
+
+    private void gameEnd(String text) {
+        canvasView.showMessage(text);
+        mainCircle.initRadius();
+        initEnemyCircles();
+        canvasView.redraw();
+    }
+
     private void moveCircles() {
-        for (EnemyCircle circle:circles) {
+        for (EnemyCircle circle : circles) {
             circle.moveOneStep();
         }
     }
